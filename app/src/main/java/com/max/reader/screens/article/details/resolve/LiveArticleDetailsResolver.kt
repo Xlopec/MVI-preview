@@ -4,10 +4,10 @@ package com.max.reader.screens.article.details.resolve
 
 import android.content.Intent
 import android.net.Uri
-import com.max.reader.app.ArticleDetailsCommand
-import com.max.reader.app.DoOpenArticle
-import com.max.reader.app.Message
-import com.max.reader.app.ScreenMessage
+import com.max.reader.app.command.ArticleDetailsCommand
+import com.max.reader.app.command.DoOpenArticle
+import com.max.reader.app.message.Message
+import com.max.reader.app.message.ScreenMessage
 import com.max.reader.app.env.HasAppContext
 import com.oliynick.max.tea.core.component.sideEffect
 

@@ -1,6 +1,7 @@
 package com.max.reader.screens.article.list.update
 
-import com.max.reader.app.*
+import com.max.reader.app.command.*
+import com.max.reader.app.message.*
 import com.max.reader.domain.Article
 import com.max.reader.domain.toggleFavorite
 import com.max.reader.screens.article.list.*

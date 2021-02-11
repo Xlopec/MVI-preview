@@ -5,7 +5,9 @@ package com.max.reader.app
 
 import android.app.Activity
 import android.app.Application
+import com.max.reader.app.command.CloseApp
 import com.max.reader.app.env.Environment
+import com.max.reader.app.message.Message
 import com.max.reader.misc.unsafeLazy
 import com.max.reader.ui.isDarkModeEnabled
 import kotlinx.coroutines.CoroutineScope

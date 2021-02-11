@@ -2,7 +2,11 @@
 
 package com.max.reader.app.resolve
 
-import com.max.reader.app.*
+import com.max.reader.app.command.ArticleDetailsCommand
+import com.max.reader.app.command.ArticlesCommand
+import com.max.reader.app.command.CloseApp
+import com.max.reader.app.command.Command
+import com.max.reader.app.message.Message
 import com.max.reader.screens.article.details.resolve.ArticleDetailsResolver
 import com.max.reader.screens.article.list.resolve.ArticlesResolver
 import com.oliynick.max.tea.core.component.sideEffect

@@ -1,7 +1,7 @@
 package com.max.reader.app.resolve
 
-import com.max.reader.app.Command
-import com.max.reader.app.Message
+import com.max.reader.app.command.Command
+import com.max.reader.app.message.Message
 
 interface AppResolver<Env> {
 

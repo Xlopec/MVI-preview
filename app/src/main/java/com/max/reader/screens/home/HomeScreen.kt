@@ -13,10 +13,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.vectorResource
 import com.max.reader.R
 import com.max.reader.app.*
+import com.max.reader.app.message.*
 import com.max.reader.screens.article.list.ArticlesState
 import com.max.reader.screens.article.list.Query
 import com.max.reader.screens.article.list.QueryType
-import com.max.reader.screens.article.list.RefreshArticles
+import com.max.reader.app.message.RefreshArticles
 import com.max.reader.screens.article.list.ui.ArticlesScreen
 import com.max.reader.screens.home.BottomMenuItem.*
 import com.max.reader.screens.settings.SettingsScreen

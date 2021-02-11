@@ -8,11 +8,11 @@ import androidx.compose.foundation.layout.preferredSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.onCommit
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.gesture.scrollorientationlocking.Orientation
-import androidx.compose.ui.platform.AmbientDensity
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 
 private val RefreshDistance = 80.dp
@@ -57,7 +57,7 @@ fun SwipeToRefreshLayout(
     },
     content: @Composable () -> Unit,
 ) {
-    val refreshDistance = with(AmbientDensity.current) { RefreshDistance.toPx() }
+    val refreshDistance = with(LocalDensity.current) { RefreshDistance.toPx() }
     val state = rememberSwipeableState(refreshingState) { newValue ->
         // compare both copies of the swipe state before calling onRefresh(). This is a workaround.
         if (newValue && !refreshingState) onRefresh()
@@ -82,7 +82,7 @@ fun SwipeToRefreshLayout(
                 .align(Alignment.TopCenter)
                 .offset(y = state.offset.value
                     .takeUnless(Float::isNaN)
-                    ?.let { with(AmbientDensity.current) { it.toDp() } } ?: 0.dp)
+                    ?.let { with(LocalDensity.current) { it.toDp() } } ?: 0.dp)
         ) {
             if (!state.offset.value.isNaN() && state.offset.value != -refreshDistance) {
                 refreshIndicator(refreshingState,
@@ -93,8 +93,9 @@ fun SwipeToRefreshLayout(
         // TODO (https://issuetracker.google.com/issues/164113834): This state->event trampoline is a
         //  workaround for a bug in the SwipableState API. Currently, state.value is a duplicated
         //  source of truth of refreshingState.
-        onCommit(refreshingState) {
+        DisposableEffect(refreshingState) {
             state.animateTo(refreshingState)
+            onDispose {}
         }
     }
 }

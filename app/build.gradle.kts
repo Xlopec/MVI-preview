@@ -1,10 +1,5 @@
-import Libraries.Versions
-import Libraries.coroutinesAndroid
-import Libraries.immutableCollections
-import Libraries.kotlinStdLib
-
 /*
- * Copyright (C) 2019 Maksym Oliinyk.
+ * Copyright (C) 2021. Maksym Oliinyk.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +13,17 @@ import Libraries.kotlinStdLib
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import Libraries.Versions.accompanies
+import Libraries.Versions.compose
+import Libraries.appcompat
+import Libraries.coroutinesAndroid
+import Libraries.gson
+import Libraries.immutableCollections
+import Libraries.kotlinStdLib
+import Libraries.stitch
+import TestLibraries.espressoCore
+import TestLibraries.espressoRunner
 
 plugins {
     id("com.android.application")
@@ -57,10 +63,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
         useIR = true
+        kotlinOptions.languageVersion = "1.5"
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = compose
     }
 
     flavorDimensions += "remote"
@@ -98,25 +105,27 @@ dependencies {
     implementation(immutableCollections)
     implementation(coroutinesAndroid)
 
-    implementation("androidx.compose.ui:ui:${Versions.compose}")
-    implementation("androidx.compose.foundation:foundation:${Versions.compose}")
-    implementation("androidx.compose.foundation:foundation-layout:${Versions.compose}")
-    implementation("androidx.compose.material:material:${Versions.compose}")
-    implementation("androidx.compose.material:material-icons-core:${Versions.compose}")
-    implementation("androidx.compose.material:material-icons-extended:${Versions.compose}")
-    implementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
-    implementation("androidx.compose.runtime:runtime:${Versions.compose}")
-    implementation("androidx.compose.animation:animation:${Versions.compose}")
-    implementation("androidx.compose.compiler:compiler:${Versions.compose}")
+    implementation("androidx.compose.ui:ui:$compose")
+    implementation("androidx.compose.foundation:foundation:$compose")
+    implementation("androidx.compose.foundation:foundation-layout:$compose")
+    implementation("androidx.compose.material:material:$compose")
+    implementation("androidx.compose.material:material-icons-core:$compose")
+    implementation("androidx.compose.material:material-icons-extended:$compose")
+    implementation("androidx.compose.ui:ui-tooling:$compose")
+    implementation("androidx.compose.runtime:runtime:$compose")
+    implementation("androidx.compose.animation:animation:$compose")
+    implementation("androidx.compose.compiler:compiler:$compose")
+    implementation("androidx.activity:activity-compose:1.3.0-alpha02")
 
-    implementation("dev.chrisbanes.accompanist:accompanist-insets:${Versions.accompanies}")
-    implementation("dev.chrisbanes.accompanist:accompanist-coil:${Versions.accompanies}")
+    implementation("dev.chrisbanes.accompanist:accompanist-insets:$accompanies")
+    implementation("dev.chrisbanes.accompanist:accompanist-coil:$accompanies")
 
-    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.appcompat:appcompat:$appcompat")
 
-    implementation("org.mongodb:stitch-android-sdk:4.1.0")
+    implementation("org.mongodb:stitch-android-sdk:$stitch")
 
-    implementation("com.google.code.gson:gson:2.8.6")
+    implementation("com.google.code.gson:gson:$gson")
+    // todo remove
     implementation("com.squareup.okhttp3:okhttp:4.8.1")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
@@ -125,7 +134,7 @@ dependencies {
     testImplementation(project(":tea-test"))
     testImplementation(coroutinesAndroid)
 
-    androidTestImplementation("androidx.test:runner:1.3.0")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+    androidTestImplementation("androidx.test:runner:$espressoRunner")
+    androidTestImplementation("androidx.test.espresso:espresso-core:$espressoCore")
 
 }

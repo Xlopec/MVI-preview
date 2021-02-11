@@ -2,6 +2,8 @@
 
 package com.max.reader.app
 
+import com.max.reader.app.command.Command
+import com.max.reader.app.command.LoadArticlesByQuery
 import com.max.reader.screens.article.list.ArticlesState
 import com.max.reader.screens.article.list.Query
 import com.max.reader.screens.article.list.QueryType

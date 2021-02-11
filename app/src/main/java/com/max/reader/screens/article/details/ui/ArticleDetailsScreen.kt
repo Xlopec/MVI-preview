@@ -23,14 +23,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.onKeyEvent
-import androidx.compose.ui.platform.AmbientContext
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.viewinterop.AndroidView
-import com.max.reader.app.Message
-import com.max.reader.app.Pop
+import com.max.reader.app.message.Message
+import com.max.reader.app.message.Pop
 import com.max.reader.domain.Article
 import com.max.reader.screens.article.details.ArticleDetailsState
-import com.max.reader.screens.article.details.OpenInBrowser
+import com.max.reader.app.message.OpenInBrowser
 import com.max.reader.ui.InsetAwareTopAppBar
 
 @Composable
@@ -39,7 +39,7 @@ fun ArticleDetailsScreen(
     onMessage: (Message) -> Unit,
 ) {
 
-    val context = AmbientContext.current
+    val context = LocalContext.current
 
     val view = remember {
         AppWebView(context)

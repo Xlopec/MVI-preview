@@ -4,16 +4,18 @@ package com.max.reader.app.update
 
 import com.max.reader.BuildConfig
 import com.max.reader.app.*
-import com.max.reader.screens.article.details.ArticleDetailsMessage
+import com.max.reader.app.command.CloseApp
+import com.max.reader.app.command.Command
+import com.max.reader.app.command.LoadArticlesByQuery
+import com.max.reader.app.message.*
 import com.max.reader.screens.article.details.ArticleDetailsState
-import com.max.reader.screens.article.details.OpenInBrowser
 import com.max.reader.screens.article.details.update.ArticleDetailsUpdater
-import com.max.reader.screens.article.list.*
+import com.max.reader.screens.article.list.ArticlesState
+import com.max.reader.screens.article.list.Query
+import com.max.reader.screens.article.list.QueryType
 import com.max.reader.screens.article.list.QueryType.*
 import com.max.reader.screens.article.list.update.ArticlesUpdater
-import com.max.reader.screens.settings.SettingsMessage
 import com.max.reader.screens.settings.SettingsState
-import com.max.reader.screens.settings.ToggleDarkMode
 import com.oliynick.max.tea.core.component.UpdateWith
 import com.oliynick.max.tea.core.component.command
 import com.oliynick.max.tea.core.component.noCommand
@@ -47,7 +49,6 @@ interface LiveAppUpdater<Env> : AppUpdater<Env> where Env : ArticlesUpdater,
                 updateArticleDetails(message, screen)
             }
             is SettingsMessage -> updateSettings(message, state)
-            else -> error("Unknown screen message, was $message")
         }
 
     fun updateSettings(

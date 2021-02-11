@@ -1,5 +1,6 @@
 package com.max.reader.app
 
+import com.max.reader.app.command.Command
 import com.oliynick.max.tea.core.component.UpdateWith
 import com.oliynick.max.tea.core.component.command
 import com.oliynick.max.tea.core.component.noCommand

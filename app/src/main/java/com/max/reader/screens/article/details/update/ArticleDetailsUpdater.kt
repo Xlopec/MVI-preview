@@ -1,7 +1,7 @@
 package com.max.reader.screens.article.details.update
 
-import com.max.reader.app.ArticleDetailsCommand
-import com.max.reader.screens.article.details.ArticleDetailsMessage
+import com.max.reader.app.command.ArticleDetailsCommand
+import com.max.reader.app.message.ArticleDetailsMessage
 import com.max.reader.screens.article.details.ArticleDetailsState
 import com.oliynick.max.tea.core.component.UpdateWith
 

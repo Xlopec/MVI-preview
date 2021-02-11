@@ -4,15 +4,17 @@ package com.max.reader.screens.article.list.resolve
 
 import android.content.Intent
 import com.max.reader.app.*
+import com.max.reader.app.command.*
 import com.max.reader.app.env.HasAppContext
 import com.max.reader.app.env.storage.HasGson
 import com.max.reader.app.env.storage.Storage
 import com.max.reader.app.exception.AppException
 import com.max.reader.app.exception.toAppException
+import com.max.reader.app.message.ScreenMessage
 import com.max.reader.domain.Article
-import com.max.reader.screens.article.list.ArticleUpdated
-import com.max.reader.screens.article.list.ArticlesLoaded
-import com.max.reader.screens.article.list.ArticlesOperationException
+import com.max.reader.app.message.ArticleUpdated
+import com.max.reader.app.message.ArticlesLoaded
+import com.max.reader.app.message.ArticlesOperationException
 import com.max.reader.screens.article.list.Query
 import com.oliynick.max.tea.core.component.effect
 import com.oliynick.max.tea.core.component.sideEffect
