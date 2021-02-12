@@ -369,7 +369,8 @@ abstract class BasicComponentTest(
                 Initializer("", "a"),
                 ::throwingResolver,
                 ::throwingUpdater,
-                this@runBlockingInTestScope
+                this@runBlockingInTestScope,
+                Dispatchers.IO
             )
 
             val job = launch { component("").collect() }
@@ -396,7 +397,8 @@ abstract class BasicComponentTest(
                 ThrowingInitializer(expectedException),
                 ::throwingResolver,
                 ::throwingUpdater,
-                this@runBlockingInTestScope
+                this@runBlockingInTestScope,
+                Dispatchers.IO
             )
 
             val job = launch { component("").collect() }

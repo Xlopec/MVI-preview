@@ -28,7 +28,7 @@ data class Env<M, S, C>(
     val updater: Updater<M, S, C>,
     // todo: group to reduce number of arguments
     val scope: CoroutineScope,
-    val io: CoroutineDispatcher = Dispatchers.IO,
+    val io: CoroutineDispatcher,
     val computation: CoroutineDispatcher = Dispatchers.Unconfined,
     val shareOptions: ShareOptions = ShareStateWhileSubscribed,
 )

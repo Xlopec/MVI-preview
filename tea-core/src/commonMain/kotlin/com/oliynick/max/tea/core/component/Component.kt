@@ -15,7 +15,7 @@
  */
 
 @file:Suppress("unused", "MemberVisibilityCanBePrivate", "FunctionName")
-@file:OptIn(UnstableApi::class)
+@file:OptIn(UnstableApi::class, ExperimentalCoroutinesApi::class)
 
 package com.oliynick.max.tea.core.component
 

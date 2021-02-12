@@ -18,6 +18,7 @@ import com.oliynick.max.tea.core.debug.app.component.cms.PluginState
 import com.oliynick.max.tea.core.debug.app.component.cms.Stopped
 import com.oliynick.max.tea.core.debug.app.misc.PluginId
 import com.oliynick.max.tea.core.debug.app.misc.settings
+import kotlinx.coroutines.Dispatchers
 
 fun PluginComponent(
     environment: Environment
@@ -32,7 +33,7 @@ fun PluginComponent(
         state: PluginState
     ) = with(environment) { update(message, state) }
 
-    return Component(AppInitializer(environment), ::doResolve, ::doUpdate, environment)
+    return Component(AppInitializer(environment), ::doResolve, ::doUpdate, environment, Dispatchers.IO)
         .with(com.oliynick.max.tea.core.debug.app.env.Logger())
 }
 

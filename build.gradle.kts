@@ -61,139 +61,139 @@ allprojects {
 }
 
 nonAndroidAppProjects()
-        .filterNot { it.name == "tea-core" }
-        .forEachApplying {
+    .filterNot { it.name == "tea-core" }
+    .forEachApplying {
 
-            apply(plugin = "org.jetbrains.kotlin.jvm")
+        apply(plugin = "org.jetbrains.kotlin.jvm")
 
-            detekt {
-                toolVersion = BuildPlugins.Versions.detektVersion
-                input = files("src/main/kotlin", "src/main/java")
-                config.setFrom(detektConfig)
-                baseline = detektBaseline
-                autoCorrect = true
-            }
+        detekt {
+            toolVersion = BuildPlugins.Versions.detektVersion
+            input = files("src/main/kotlin", "src/main/java")
+            config.setFrom(detektConfig)
+            baseline = detektBaseline
+            autoCorrect = true
         }
+    }
 
 libraryProjects()
-        .filterNot { it.name == "tea-core" }
-        .forEachApplying {
+    .filterNot { it.name == "tea-core" }
+    .forEachApplying {
 
-            apply(plugin = "maven-publish")
-            apply(plugin = "org.jetbrains.dokka")
-            apply(plugin = "com.jfrog.bintray")
+        apply(plugin = "maven-publish")
+        apply(plugin = "org.jetbrains.dokka")
+        apply(plugin = "com.jfrog.bintray")
 
-            tasks.withType<DokkaTask>().configureEach {
+        tasks.withType<DokkaTask>().configureEach {
 
-                outputDirectory.set(buildDir.resolve("javadoc"))
+            outputDirectory.set(buildDir.resolve("javadoc"))
 
-                dokkaSourceSets {
-                    named("main") {
-                        reportUndocumented.set(true)
-                        displayName.set(project.name)
-                        includeNonPublic.set(false)
-                        skipEmptyPackages.set(true)
+            dokkaSourceSets {
+                named("main") {
+                    reportUndocumented.set(true)
+                    displayName.set(project.name)
+                    includeNonPublic.set(false)
+                    skipEmptyPackages.set(true)
 
-                        sourceLink {
-                            localDirectory.set(file("src/main/java"))
-                            remoteUrl.set(
-                                    URL(
-                                            "https://github.com/Xlopec/Tea-bag/tree/dev_plugin/${project.name}/src/main/java"
-                                    )
+                    sourceLink {
+                        localDirectory.set(file("src/main/java"))
+                        remoteUrl.set(
+                            URL(
+                                "https://github.com/Xlopec/Tea-bag/tree/dev_plugin/${project.name}/src/main/java"
                             )
-                        }
-                        externalDocumentationLink(
-                                URL("https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/")
-                        )
-                        externalDocumentationLink(
-                                URL("https://javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/")
                         )
                     }
-                }
-            }
-
-            val sourcesJar by tasks.registering(Jar::class) {
-                dependsOn(tasks.classes)
-                archiveClassifier.set("sources")
-                from(sourceSets.main.get().allSource)
-            }
-
-            val javadocJar by tasks.registering(Jar::class) {
-                dependsOn(tasks.named("dokkaJavadoc"))
-                archiveClassifier.set("javadoc")
-                from("$buildDir/javadoc")
-            }
-
-            val copyArtifacts by tasks.registering(Copy::class) {
-                from("$buildDir/libs/")
-                into("${rootProject.buildDir}/artifacts/${this@forEachApplying.name}")
-            }
-
-            tasks
-                    .named("bintrayUpload")
-                    .dependsOn("publishAllPublicationsToMavenLocalRepository")
-
-            val releaseLibrary by tasks.creating {
-                dependsOn("bintrayUpload", copyArtifacts)
-            }
-
-            publishing {
-
-                publications {
-                    create<MavenPublication>(name) {
-                        from(components["java"])
-                        artifact(sourcesJar)
-                        artifact(javadocJar)
-
-                        groupId = "com.github.Xlopec"
-                        artifactId = name
-                        version = versionName()
-                    }
-                }
-
-                repositories {
-                    mavenLocal()
-                }
-            }
-
-            artifacts {
-                archives(sourcesJar)
-                archives(javadocJar)
-            }
-
-            the<BintrayExtension>().apply {
-
-                user = "xlopec"
-                key = bintrayApiKey()
-                setPublications(name)
-
-                with(pkg) {
-
-                    setLicenses("Apache-2.0")
-                    repo = "tea-bag"
-                    name = this@forEachApplying.name
-                    userOrg = "xlopec"
-                    vcsUrl = "https://github.com/Xlopec/Tea-bag.git"
-                    websiteUrl = "https://github.com/Xlopec/Tea-bag"
-                    issueTrackerUrl = "https://github.com/Xlopec/Tea-bag/issues"
-                    publicDownloadNumbers = true
-                    githubReleaseNotesFile = "README.md"
-
-                    with(version) {
-
-                        val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZ", Locale.ENGLISH)
-
-                        released = format.format(Date())
-
-                        val versionName = versionName()
-
-                        name = versionName
-                        vcsTag = versionName
-                        desc = "debug"
-                    }
+                    externalDocumentationLink(
+                        URL("https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/")
+                    )
+                    externalDocumentationLink(
+                        URL("https://javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/")
+                    )
                 }
             }
         }
+
+        val sourcesJar by tasks.registering(Jar::class) {
+            dependsOn(tasks.classes)
+            archiveClassifier.set("sources")
+            from(sourceSets.main.get().allSource)
+        }
+
+        val javadocJar by tasks.registering(Jar::class) {
+            dependsOn(tasks.named("dokkaJavadoc"))
+            archiveClassifier.set("javadoc")
+            from("$buildDir/javadoc")
+        }
+
+        val copyArtifacts by tasks.registering(Copy::class) {
+            from("$buildDir/libs/")
+            into("${rootProject.buildDir}/artifacts/${this@forEachApplying.name}")
+        }
+
+        tasks
+            .named("bintrayUpload")
+            .dependsOn("publishAllPublicationsToMavenLocalRepository")
+
+        val releaseLibrary by tasks.creating {
+            dependsOn("bintrayUpload", copyArtifacts)
+        }
+
+        publishing {
+
+            publications {
+                create<MavenPublication>(name) {
+                    from(components["java"])
+                    artifact(sourcesJar)
+                    artifact(javadocJar)
+
+                    groupId = "com.github.Xlopec"
+                    artifactId = name
+                    version = versionName()
+                }
+            }
+
+            repositories {
+                mavenLocal()
+            }
+        }
+
+        artifacts {
+            archives(sourcesJar)
+            archives(javadocJar)
+        }
+
+        the<BintrayExtension>().apply {
+
+            user = "xlopec"
+            key = bintrayApiKey()
+            setPublications(name)
+
+            with(pkg) {
+
+                setLicenses("Apache-2.0")
+                repo = "tea-bag"
+                name = this@forEachApplying.name
+                userOrg = "xlopec"
+                vcsUrl = "https://github.com/Xlopec/Tea-bag.git"
+                websiteUrl = "https://github.com/Xlopec/Tea-bag"
+                issueTrackerUrl = "https://github.com/Xlopec/Tea-bag/issues"
+                publicDownloadNumbers = true
+                githubReleaseNotesFile = "README.md"
+
+                with(version) {
+
+                    val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZ", Locale.ENGLISH)
+
+                    released = format.format(Date())
+
+                    val versionName = versionName()
+
+                    name = versionName
+                    vcsTag = versionName
+                    desc = "debug"
+                }
+            }
+        }
+    }
 
 pluginProject().forEachApplying {
 
@@ -262,7 +262,8 @@ val detektFormat by tasks.registering(Detekt::class) {
 }
 
 val releaseAll by tasks.registering(DefaultTask::class) {
-    setDependsOn((libraryProjects().map { p -> p.releaseTask } + pluginProject().map { p -> p.releaseTask }))
+    setDependsOn((libraryProjects().filterNot { it.name == "tea-core" }
+        .map { p -> p.releaseTask } + pluginProject().map { p -> p.releaseTask }))
 }
 
 allprojects {
@@ -278,15 +279,17 @@ allprojects {
             // disables warning about usage of experimental Kotlin features
             @Suppress("SuspiciousCollectionReassignment")
             freeCompilerArgs += listOf(
-                    "-Xuse-experimental=kotlin.ExperimentalUnsignedTypes",
-                    "-Xuse-experimental=kotlin.Experimental",
-                    "-Xuse-experimental=kotlin.contracts.ExperimentalContracts",
-                    "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
-                    "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
-                    "-Xuse-experimental=io.ktor.util.KtorExperimentalAPI",
-                    "-Xuse-experimental=kotlin.ExperimentalStdlibApi",
-                    "-XXLanguage:+NewInference",
-                    "-XXLanguage:+InlineClasses"
+                "-Xuse-experimental=kotlin.ExperimentalUnsignedTypes",
+                "-Xuse-experimental=kotlin.Experimental",
+                "-Xuse-experimental=kotlin.contracts.ExperimentalContracts",
+                "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
+                "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-Xuse-experimental=io.ktor.util.KtorExperimentalAPI",
+                "-Xuse-experimental=kotlin.ExperimentalStdlibApi",
+                "-XXLanguage:+NewInference",
+                "-XXLanguage:+InlineClasses",
+                "-Xopt-in=kotlin.RequiresOptIn",
+                "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
             )
         }
     }
@@ -298,9 +301,9 @@ allprojects {
         tasks.withType<Test>().all {
             reports {
                 html.destination =
-                        file("${rootProject.buildDir}/junit-reports/${project.name}/html")
+                    file("${rootProject.buildDir}/junit-reports/${project.name}/html")
                 junitXml.destination =
-                        file("${rootProject.buildDir}/junit-reports/${project.name}/xml")
+                    file("${rootProject.buildDir}/junit-reports/${project.name}/xml")
             }
         }
     } else {
@@ -320,17 +323,17 @@ val ciTests by tasks.registering(Test::class) {
 
 val Project.releaseTask: Task
     get() = tasks.findByName("releaseLibrary")
-            ?: tasks.findByName("releasePlugin")
-            ?: error("Couldn't find release task for project $name")
+        ?: tasks.findByName("releasePlugin")
+        ?: error("Couldn't find release task for project $name")
 
 fun androidAppProject() =
-        subprojects.find { project -> project.name == "app" }!!
+    subprojects.find { project -> project.name == "app" }!!
 
 fun nonAndroidAppProjects() =
-        subprojects.filterNot { project -> project.name == "app" }
+    subprojects.filterNot { project -> project.name == "app" }
 
 fun libraryProjects() =
-        nonAndroidAppProjects().filterNot { project -> project.name == "tea-time-travel-plugin" || project.name == "tea-test" }
+    nonAndroidAppProjects().filterNot { project -> project.name == "tea-time-travel-plugin" || project.name == "tea-test" }
 
 fun pluginProject() =
-        subprojects.filter { project -> project.name == "tea-time-travel-plugin" }
+    subprojects.filter { project -> project.name == "tea-time-travel-plugin" }

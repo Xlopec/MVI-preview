@@ -48,6 +48,7 @@ object Libraries {
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
     const val coroutinesSwing = "org.jetbrains.kotlinx:kotlinx-coroutines-swing:$coroutines"
     const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines"
+    const val coroutinesMt = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2-native-mt"
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
 
     const val ktorServerCore = "io.ktor:ktor-server-core:$ktor"

@@ -1,3 +1,4 @@
+import Libraries.coroutinesMt
 import Libraries.kotlinStdLib
 
 /*
@@ -20,6 +21,19 @@ plugins {
     kotlin("multiplatform")
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions {
+        // disables warning about usage of experimental Kotlin features
+        @Suppress("SuspiciousCollectionReassignment")
+        freeCompilerArgs += listOf(
+            "-XXLanguage:+NewInference",
+            "-XXLanguage:+InlineClasses",
+            "-Xopt-in=kotlin.RequiresOptIn",
+            "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+        )
+    }
+}
+
 kotlin {
 
     jvm {
@@ -29,25 +43,25 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2-native-mt")
+                api(coroutinesMt)
                 implementation(kotlinStdLib)
             }
         }
 
         val commonTest by getting {
             dependencies {
+
+            }
+        }
+
+        val jvmMain by getting {
+
+        }
+
+        val jvmTest by getting {
+            dependencies {
                 implementation(project(":tea-test"))
             }
         }
     }
 }
-
-/*dependencies {
-
-    api(coroutinesCore)
-
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(kotlinStdLib)
-
-    testImplementation(project(":tea-test"))
-}*/

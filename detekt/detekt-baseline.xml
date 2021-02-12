@@ -4,6 +4,7 @@
   <CurrentIssues>
     <ID>ComplexCondition:CollectionExtensions.kt$x &lt; size &amp;&amp; (y == replaceWith.size || (y &lt; replaceWith.size &amp;&amp; !diffCallback.areItemsTheSame(this[x], replaceWith[y])))</ID>
     <ID>ComplexMethod:LiveUiUpdater.kt$LiveUiUpdater$override fun update( message: UIMessage, state: PluginState ): UpdateWith&lt;PluginState, PluginCommand></ID>
+    <ID>FunctionNaming:ComponentTest.kt$ComponentTest.Companion$fun ComponentFactory( @Suppress("UNUSED_PARAMETER") scope: CoroutineScope, env: Env&lt;Char, String, Char>, ): Component&lt;Char, String, Char></ID>
     <ID>FunctionNaming:ToolWindowView.kt$private fun JBEditorTabs( project: Project, )</ID>
     <ID>FunctionNaming:ToolWindowView.kt$private fun TabInfo( id: ComponentId, content: JComponent, group: ActionGroup, )</ID>
     <ID>FunctionOnlyReturningConstant:RenderExtensions.kt$@Suppress("unused") private fun Null.toReadableString(): String</ID>
@@ -20,13 +21,6 @@
     <ID>MagicNumber:Networking.kt$3</ID>
     <ID>MagicNumber:ServerImpl.kt$10</ID>
     <ID>MagicNumber:ServerImpl.kt$5</ID>
-    <ID>MatchingDeclarationName:Component.kt$ComponentId</ID>
-    <ID>MatchingDeclarationName:HomeScreen.kt$BottomMenuItem</ID>
-    <ID>MatchingDeclarationName:MapSerializer.kt$MapDeserializer : JsonDeserializer</ID>
-    <ID>MatchingDeclarationName:Memoization.kt$Key7</ID>
-    <ID>MatchingDeclarationName:MongoDb.kt$HasMongoCollection</ID>
-    <ID>MatchingDeclarationName:PersistentSerializer.kt$PersistentListSerializer : JsonSerializerJsonDeserializer</ID>
-    <ID>MatchingDeclarationName:UpdateUI.kt$UiUpdater</ID>
     <ID>MaxLineLength:CollectionExtensionsTest.kt$CollectionExtensionsTest$val input = mutableListOf(263, 110, 109, 156, 158, 161, 166, 170, 176, 186, 150, 189, 194, 197, 199, 204, 176, 186, 150, 189, 194, 197, 199, 204)</ID>
     <ID>MaxLineLength:FiltersTest.kt$FiltersTest$fun</ID>
     <ID>MaxLineLength:LiveArticlesUpdater.kt$LiveArticlesUpdater$is LoadArticlesFromScratch, is RefreshArticles -> state.toRefreshing() command LoadArticlesByQuery(state.id, state.query, state.articles.size, ArticlesState.ArticlesPerPage)</ID>
@@ -87,6 +81,9 @@
     <ID>UndocumentedPublicClass:ClientMessage.kt$ApplyState&lt;J> : ClientMessage</ID>
     <ID>UndocumentedPublicClass:ClientMessage.kt$ClientMessage&lt;out J></ID>
     <ID>UndocumentedPublicClass:Component.kt$ComponentId</ID>
+    <ID>UndocumentedPublicClass:ComponentExtensionsTest.kt$ComponentExtensionsTest</ID>
+    <ID>UndocumentedPublicClass:ComponentTest.kt$ComponentTest : BasicComponentTest</ID>
+    <ID>UndocumentedPublicClass:ComponentTestSuite.kt$ComponentTestSuite</ID>
     <ID>UndocumentedPublicClass:Environment.kt$ShareOptions</ID>
     <ID>UndocumentedPublicClass:Packets.kt$NotifyClient&lt;out J></ID>
     <ID>UndocumentedPublicClass:Packets.kt$NotifyServer&lt;out J></ID>
@@ -99,6 +96,15 @@
     <ID>UndocumentedPublicFunction:Component.kt$@UnstableApi fun &lt;M, S, C> Flow&lt;Snapshot&lt;M, S, C>>.downstream( input: Flow&lt;M>, upstreamInput: SendChannel&lt;M>, ): Flow&lt;Snapshot&lt;M, S, C>></ID>
     <ID>UndocumentedPublicFunction:Component.kt$@UnstableApi fun &lt;S, C> Env&lt;*, S, C>.init(): Flow&lt;Initial&lt;S, C>></ID>
     <ID>UndocumentedPublicFunction:Component.kt$@UnstableApi fun &lt;T> Flow&lt;T>.shareIn( scope: CoroutineScope, shareOptions: ShareOptions, )</ID>
+    <ID>UndocumentedPublicFunction:ComponentExtensionsTest.kt$ComponentExtensionsTest$@Test fun `test multiple commands extension`()</ID>
+    <ID>UndocumentedPublicFunction:ComponentExtensionsTest.kt$ComponentExtensionsTest$@Test fun `test no commands extension`()</ID>
+    <ID>UndocumentedPublicFunction:ComponentExtensionsTest.kt$ComponentExtensionsTest$@Test fun `test side effect`()</ID>
+    <ID>UndocumentedPublicFunction:ComponentExtensionsTest.kt$ComponentExtensionsTest$@Test fun `test single command extension`()</ID>
+    <ID>UndocumentedPublicFunction:ComponentExtensionsTest.kt$ComponentExtensionsTest$@Test fun `test three commands extension`()</ID>
+    <ID>UndocumentedPublicFunction:ComponentExtensionsTest.kt$ComponentExtensionsTest$@Test fun `test two commands extension`()</ID>
+    <ID>UndocumentedPublicFunction:ComponentExtensionsTest.kt$ComponentExtensionsTest$@Test fun `test when effect returns command the result is set containing the messages`()</ID>
+    <ID>UndocumentedPublicFunction:ComponentExtensionsTest.kt$ComponentExtensionsTest$@Test fun `test when effect returns no command the result is empty set`()</ID>
+    <ID>UndocumentedPublicFunction:ComponentTest.kt$ComponentTest.Companion$fun ComponentFactory( @Suppress("UNUSED_PARAMETER") scope: CoroutineScope, env: Env&lt;Char, String, Char>, ): Component&lt;Char, String, Char></ID>
     <ID>UndocumentedPublicFunction:FlowExtensions.kt$@UnstableApi suspend fun &lt;T> Flow&lt;T>.into( sendChannel: SendChannel&lt;T> )</ID>
     <ID>UndocumentedPublicFunction:FlowExtensions.kt$fun &lt;T> Flow&lt;T>.mergeWith(other: Flow&lt;T>): Flow&lt;T></ID>
     <ID>UndocumentedPublicProperty:ClientMessage.kt$ApplyMessage$val message: J</ID>
