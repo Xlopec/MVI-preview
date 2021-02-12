@@ -3,7 +3,9 @@
 package com.max.reader.app
 
 import android.os.Build
+import com.max.reader.app.command.Command
 import com.max.reader.app.env.Environment
+import com.max.reader.app.message.Message
 import com.max.reader.app.serialization.PersistentListSerializer
 import com.oliynick.max.tea.core.Initializer
 import com.oliynick.max.tea.core.component.states
