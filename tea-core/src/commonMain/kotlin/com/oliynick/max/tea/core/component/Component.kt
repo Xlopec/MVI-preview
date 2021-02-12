@@ -87,7 +87,7 @@ fun <M, C, S> Component(
     updater: Updater<M, S, C>,
     // todo: group to reduce number of arguments
     scope: CoroutineScope,
-    io: CoroutineDispatcher = Dispatchers.IO,
+    io: CoroutineDispatcher,
     computation: CoroutineDispatcher = Dispatchers.Unconfined,
     shareOptions: ShareOptions = ShareStateWhileSubscribed,
 ): Component<M, S, C> =

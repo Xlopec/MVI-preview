@@ -1,4 +1,3 @@
-import Libraries.coroutinesCore
 import Libraries.kotlinStdLib
 
 /*
@@ -17,7 +16,33 @@ import Libraries.kotlinStdLib
  * limitations under the License.
  */
 
-dependencies {
+plugins {
+    kotlin("multiplatform")
+}
+
+kotlin {
+
+    jvm {
+        withJava()
+    }
+
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2-native-mt")
+                implementation(kotlinStdLib)
+            }
+        }
+
+        val commonTest by getting {
+            dependencies {
+                implementation(project(":tea-test"))
+            }
+        }
+    }
+}
+
+/*dependencies {
 
     api(coroutinesCore)
 
@@ -25,4 +50,4 @@ dependencies {
     implementation(kotlinStdLib)
 
     testImplementation(project(":tea-test"))
-}
+}*/

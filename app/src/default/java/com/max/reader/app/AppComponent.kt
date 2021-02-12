@@ -6,6 +6,7 @@ import com.max.reader.app.env.Environment
 import com.oliynick.max.tea.core.Initializer
 import com.oliynick.max.tea.core.component.Component
 import com.oliynick.max.tea.core.component.states
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 
 fun Environment.AppComponent(
@@ -25,7 +26,8 @@ fun Environment.AppComponent(
         initializer,
         ::resolve,
         ::update,
-        this
+        this,
+        Dispatchers.IO
     ).states()
 
 }

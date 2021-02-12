@@ -3,12 +3,12 @@ import BuildPlugins.Versions.intellijVersion
 import Libraries.Versions.coroutines
 import Libraries.Versions.ktor
 
-const val kotlinVersion = "1.4.21-2"
+const val kotlinVersion = "1.4.30"
 
 object BuildPlugins {
 
     object Versions {
-        const val buildToolsVersion = "7.0.0-alpha05"
+        const val buildToolsVersion = "7.0.0-alpha06"
         const val detektVersion = "1.15.0"
         const val dokkaVersion = "1.4.20"
         const val bintrayVersion = "1.8.4"
